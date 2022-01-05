@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class DataAdapter(val dataList: ArrayList<Datas>): RecyclerView.Adapter<DataAdapter.DataViewHolder>(){
+class DataAdapter(val dataList: ArrayList<Post>): RecyclerView.Adapter<DataAdapter.DataViewHolder>(){
 
     // 보여줄 데이터의 개수 만큼 View 생성
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataAdapter.DataViewHolder {
@@ -17,8 +17,8 @@ class DataAdapter(val dataList: ArrayList<Datas>): RecyclerView.Adapter<DataAdap
 
     // 생성된 View에 보여줄 데이터 set
     override fun onBindViewHolder(holder: DataAdapter.DataViewHolder, position: Int) {
-        holder.tv1.text = dataList.get(position).text1
-        holder.tv2.text = dataList.get(position).text2
+        holder.tv1.text = dataList.get(position).userId.toString()
+        holder.tv2.text = dataList.get(position).id.toString()
     }
 
     // 생성된 View의 개수 return
