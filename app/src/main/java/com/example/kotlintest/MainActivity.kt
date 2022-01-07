@@ -12,8 +12,6 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
-
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,21 +20,10 @@ class MainActivity : AppCompatActivity() {
 
         val BASE_URL:String = "https://jsonplaceholder.typicode.com"
 
-
-        // Java
-        /*RecyclerView mainRecyclerView = findViewById(R.id.activity_main_recyclerview)*/
-        // Kotlin
+        // Kotlin, Recyclerview 선언
         val mainRecyclerView: RecyclerView = findViewById(R.id.activity_main_recyclerview)
 
-        /*val dataList = arrayListOf(
-            Datas("1","2"),
-            Datas("2","2"),
-            Datas("3","2"),
-            Datas("4","2")
-        )*/
-
-
-        //Retrofit builder
+        //Retrofit builder(Client 선언)
         val testRetrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -54,6 +41,7 @@ class MainActivity : AppCompatActivity() {
                     var posts: List<Post>? = response.body()
                     Log.d("TEST","성공")
                     Log.d("TEST",posts?.size.toString())
+                    // RecyclerView 연결
                     mainRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity,LinearLayoutManager.VERTICAL,false)
                     mainRecyclerView.setHasFixedSize(true)
                     mainRecyclerView.adapter = posts?.let { DataAdapter(it as ArrayList<Post>) }
@@ -69,24 +57,8 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        // RecyclerView 연결
 
 
-        /*testRetrofitApi?.getUser()?.enqueue(object : Callback<User>{
-            override fun onResponse(call: Call<User>, response: Response<User>) {
-                if(response.isSuccessful()){
-                    var user: User? = response.body()
-                    Log.d("TEST","성공")
-                    Log.d("TEST",user.toString())
-                }
-                else{
-                    Log.d("TEST","실패(400)")
-                }
-            }
-            override fun onFailure(call: Call<User>, t: Throwable) {
-                Log.d("TEST","실패(500)")
-            }
-        })*/
 
 
 

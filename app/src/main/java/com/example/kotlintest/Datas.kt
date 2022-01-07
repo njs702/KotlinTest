@@ -2,8 +2,6 @@ package com.example.kotlintest
 
 import com.google.gson.annotations.SerializedName
 
-// Data 담을 Value Object
-class Datas(val text1: String,val text2: String)
 
 data class User(
     @SerializedName("userId")
