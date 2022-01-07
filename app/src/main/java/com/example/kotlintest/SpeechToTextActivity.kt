@@ -84,7 +84,28 @@ class SpeechToTextActivity : AppCompatActivity() {
             }
             // 에러 발생한 경우
             override fun onError(p0: Int) {
-                Toast.makeText(applicationContext,"에러 발생",Toast.LENGTH_SHORT).show()
+                var message: String = ""
+                when(p0){
+                    SpeechRecognizer.ERROR_AUDIO->
+                        message = "오디오 에러"
+                    SpeechRecognizer.ERROR_CLIENT->
+                        message = "클라이언트 에러"
+                    SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS->
+                        message = "퍼미션 허가 안했을 경우 에러"
+                    SpeechRecognizer.ERROR_LANGUAGE_NOT_SUPPORTED->
+                        message = "언어 지원하지 않는 에러"
+                    SpeechRecognizer.ERROR_NETWORK->
+                        message = "네트워크 에러"
+                    SpeechRecognizer.ERROR_NETWORK_TIMEOUT->
+                        message = "네트워크 타임아웃 에러"
+                    SpeechRecognizer.ERROR_SERVER->
+                        message = "오디오 에러"
+                    SpeechRecognizer.ERROR_SPEECH_TIMEOUT->
+                        message = "오디오 에러"
+                    else ->
+                        message = "알 수 없는 오류"
+                }
+                Toast.makeText(applicationContext,"에러 발생 $message",Toast.LENGTH_SHORT).show()
             }
 
             // Called after the user stops speaking.
@@ -101,11 +122,9 @@ class SpeechToTextActivity : AppCompatActivity() {
             }
 
             override fun onPartialResults(p0: Bundle?) {
-                TODO("Not yet implemented")
             }
 
             override fun onEvent(p0: Int, p1: Bundle?) {
-                TODO("Not yet implemented")
             }
 
         }
